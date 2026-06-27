@@ -5,6 +5,7 @@ import {
   AlertTriangle,
   Scale,
   FileSearch,
+  ArrowUpRight,
 } from "lucide-react";
 
 export const Route = createFileRoute("/evidence-matrix")({
@@ -367,7 +368,7 @@ function WitnessCard({ w, kind }: { w: WitnessEvidence; kind: "support" | "contr
       {w.reasoning && (
         <p className="mt-1 text-[11px] text-slate-500">↳ {w.reasoning}</p>
       )}
-      <div className="mt-1.5">
+      <div className="mt-2 flex items-center justify-between gap-2">
         <span
           className={`rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${confTone(
             w.confidence,
@@ -375,6 +376,14 @@ function WitnessCard({ w, kind }: { w: WitnessEvidence; kind: "support" | "contr
         >
           {w.confidence}
         </span>
+        <Link
+          to="/statement/$statementId"
+          params={{ statementId: w.statement_id }}
+          className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-700 hover:text-slate-900"
+        >
+          View statement
+          <ArrowUpRight className="h-3 w-3" />
+        </Link>
       </div>
     </div>
   );
