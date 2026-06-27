@@ -169,7 +169,7 @@ function BoardPage() {
 
   const tone = readinessTone(result.trial_readiness);
   const boardW = Math.max(boardSize.w, 1200);
-  const boardH = Math.max(600, 460 + Math.ceil(noteSlots.length / (boardSize.w > 1600 ? 5 : boardSize.w > 1200 ? 4 : 3)) * 260 + 120);
+  const boardH = Math.max(900, 720 + Math.ceil(noteSlots.length / (boardSize.w > 1600 ? 5 : boardSize.w > 1200 ? 4 : 3)) * 260 + 120);
 
   return (
     <div className="min-h-screen">
