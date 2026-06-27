@@ -14,6 +14,7 @@ import { Route as MatrixRouteImport } from './routes/matrix'
 import { Route as EvidenceMatrixRouteImport } from './routes/evidence-matrix'
 import { Route as BoardRouteImport } from './routes/board'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StatementStatementIdRouteImport } from './routes/statement.$statementId'
 
 const ReportRoute = ReportRouteImport.update({
   id: '/report',
@@ -40,6 +41,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StatementStatementIdRoute = StatementStatementIdRouteImport.update({
+  id: '/statement/$statementId',
+  path: '/statement/$statementId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/evidence-matrix': typeof EvidenceMatrixRoute
   '/matrix': typeof MatrixRoute
   '/report': typeof ReportRoute
+  '/statement/$statementId': typeof StatementStatementIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/evidence-matrix': typeof EvidenceMatrixRoute
   '/matrix': typeof MatrixRoute
   '/report': typeof ReportRoute
+  '/statement/$statementId': typeof StatementStatementIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,33 @@ export interface FileRoutesById {
   '/evidence-matrix': typeof EvidenceMatrixRoute
   '/matrix': typeof MatrixRoute
   '/report': typeof ReportRoute
+  '/statement/$statementId': typeof StatementStatementIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/board' | '/evidence-matrix' | '/matrix' | '/report'
+  fullPaths:
+    | '/'
+    | '/board'
+    | '/evidence-matrix'
+    | '/matrix'
+    | '/report'
+    | '/statement/$statementId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/board' | '/evidence-matrix' | '/matrix' | '/report'
-  id: '__root__' | '/' | '/board' | '/evidence-matrix' | '/matrix' | '/report'
+  to:
+    | '/'
+    | '/board'
+    | '/evidence-matrix'
+    | '/matrix'
+    | '/report'
+    | '/statement/$statementId'
+  id:
+    | '__root__'
+    | '/'
+    | '/board'
+    | '/evidence-matrix'
+    | '/matrix'
+    | '/report'
+    | '/statement/$statementId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +105,7 @@ export interface RootRouteChildren {
   EvidenceMatrixRoute: typeof EvidenceMatrixRoute
   MatrixRoute: typeof MatrixRoute
   ReportRoute: typeof ReportRoute
+  StatementStatementIdRoute: typeof StatementStatementIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/statement/$statementId': {
+      id: '/statement/$statementId'
+      path: '/statement/$statementId'
+      fullPath: '/statement/$statementId'
+      preLoaderRoute: typeof StatementStatementIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   EvidenceMatrixRoute: EvidenceMatrixRoute,
   MatrixRoute: MatrixRoute,
   ReportRoute: ReportRoute,
+  StatementStatementIdRoute: StatementStatementIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
