@@ -1,159 +1,112 @@
 export type Confidence = "HIGH" | "MEDIUM" | "LOW";
-export type DocType = "email" | "contract" | "invoice" | "minutes";
+export type Verdict = "SUPPORTS" | "CONTRADICTS";
+export type Topic =
+  | "horizon_system"
+  | "knowledge"
+  | "prosecutions"
+  | "management"
+  | "financial_losses"
+  | (string & {});
 
 export type WitnessEvidence = {
   witness: string;
-  passage: string;
-  paragraph: string;
+  statement_id: string;
+  verdict: Verdict;
   confidence: Confidence;
+  relevant_passage: string;
+  paragraph_ref: string;
   reasoning?: string;
 };
 
-export type DocEvidence = {
-  exhibit: string;
-  doc_type: DocType;
-  date: string;
-  passage: string;
-  location: string;
-  confidence: Confidence;
-  /** PDF URL(s) — Google Drive share link, backend endpoint, etc. Pass an array when an exhibit spans multiple PDFs. */
-  pdf_url?: string | string[];
-  /** Optional labels matched by index to pdf_url when it's an array (e.g. ["Page 1", "Attachment"]). */
-  pdf_labels?: string[];
-};
-
 export type Claim = {
-  allegation_summary: string;
-  allegation_type: string;
-  topic: string;
-  paragraph_ref: string;
-  witness_a: string;
-  confidence: Confidence;
+  allegation_id: number;
+  allegation: string;
+  topic: Topic;
   gap: boolean;
   supporting: WitnessEvidence[];
   contradicting: WitnessEvidence[];
-  neutral: string[];
-  not_addressed: number;
-  documents_supporting: DocEvidence[];
-  documents_contradicting: DocEvidence[];
+  not_addressed: string[];
 };
 
-export type EvidenceData = {
-  primary_witness: string;
-  comparison_witnesses: string[];
-  total_claims: number;
+export type Report = {
+  documents_analysed: string[];
+  total_allegations: number;
   trial_readiness: "STRONG" | "MODERATE" | "VULNERABLE";
   trial_readiness_score: number;
-  documentary_corroboration_score: number;
   matrix: Claim[];
+  gaps: Claim[];
+  contradictions: Claim[];
 };
 
-export const EVIDENCE_DATA: EvidenceData = {
-  primary_witness: "Jane Smith",
-  comparison_witnesses: ["Robert Jones", "Aisha Khan"],
-  total_claims: 3,
+export const EVIDENCE_DATA: Report = {
+  documents_analysed: ["Jane Smith", "Robert Jones", "Aisha Khan"],
+  total_allegations: 8,
   trial_readiness: "MODERATE",
-  trial_readiness_score: 66.7,
-  documentary_corroboration_score: 33.3,
+  trial_readiness_score: 62.5,
   matrix: [
     {
-      allegation_summary: "The parties agreed a £50,000 fee on the call.",
-      allegation_type: "allegation",
-      topic: "financial_losses",
-      paragraph_ref: "para 4",
-      witness_a: "Jane Smith",
-      confidence: "HIGH",
+      allegation_id: 1,
+      allegation:
+        "The Horizon IT system contained bugs, errors and defects that caused false shortfalls in subpostmasters' branch accounts.",
+      topic: "horizon_system",
       gap: false,
       supporting: [
         {
-          witness: "Robert Jones",
-          passage: "I recall a £50k figure being discussed.",
-          paragraph: "para 7",
-          confidence: "MEDIUM",
+          witness: "Jane Smith",
+          statement_id: "WITN0001",
+          verdict: "SUPPORTS",
+          confidence: "HIGH",
+          relevant_passage:
+            "The system regularly showed shortfalls that did not exist.",
+          paragraph_ref: "para 12",
+          reasoning: "Directly confirms false shortfalls.",
         },
       ],
       contradicting: [],
-      neutral: ["Aisha Khan"],
-      not_addressed: 0,
-      documents_supporting: [
-        {
-          exhibit: "JS-3",
-          doc_type: "email",
-          date: "2021-03-12",
-          passage: "Happy to proceed at £50,000 as discussed.",
-          location: "body",
-          confidence: "HIGH",
-          // TODO: replace with the real Google Drive share URL or backend endpoint for this exhibit
-          pdf_url: "https://www.africau.edu/images/default/sample.pdf",
-        },
-      ],
-      documents_contradicting: [],
+      not_addressed: ["Aisha Khan"],
     },
     {
-      allegation_summary: "Delivery was promised by 1 June.",
-      allegation_type: "allegation",
-      topic: "other",
-      paragraph_ref: "para 9",
-      witness_a: "Jane Smith",
-      confidence: "LOW",
+      allegation_id: 2,
+      allegation:
+        "Post Office Limited knew or ought to have known about defects in the Horizon system before and during the prosecution of subpostmasters.",
+      topic: "knowledge",
       gap: false,
       supporting: [],
       contradicting: [
         {
-          witness: "Aisha Khan",
-          passage: "No firm date was ever set.",
-          paragraph: "para 12",
+          witness: "Robert Jones",
+          statement_id: "WITN0002",
+          verdict: "CONTRADICTS",
           confidence: "HIGH",
-          reasoning: "Directly denies a fixed deadline.",
+          relevant_passage:
+            "We had no reports of systemic issues at that time.",
+          paragraph_ref: "para 5",
+          reasoning: "Denies prior knowledge of defects.",
         },
       ],
-      neutral: [],
-      not_addressed: 1,
-      documents_supporting: [],
-      documents_contradicting: [
-        {
-          exhibit: "AK-2",
-          doc_type: "contract",
-          date: "2021-02-01",
-          passage: "Delivery date to be agreed in writing.",
-          location: "clause 5.2",
-          confidence: "HIGH",
-          // TODO: replace with the real Google Drive share URL or backend endpoint for this exhibit
-          pdf_url: "https://www.africau.edu/images/default/sample.pdf",
-        },
-      ],
+      not_addressed: ["Aisha Khan"],
     },
     {
-      allegation_summary: "The witness raised concerns internally in 2009.",
-      allegation_type: "admission",
-      topic: "knowledge",
-      paragraph_ref: "para 15",
-      witness_a: "Jane Smith",
-      confidence: "LOW",
+      allegation_id: 3,
+      allegation:
+        "Subpostmasters were wrongly prosecuted for false accounting and theft as a result of Horizon-generated shortfalls.",
+      topic: "prosecutions",
       gap: true,
       supporting: [],
       contradicting: [],
-      neutral: [],
-      not_addressed: 2,
-      documents_supporting: [],
-      documents_contradicting: [],
+      not_addressed: ["Jane Smith", "Robert Jones", "Aisha Khan"],
     },
   ],
+  gaps: [],
+  contradictions: [],
 };
 
-export function findExhibit(exhibit: string) {
-  for (const claim of EVIDENCE_DATA.matrix) {
-    const doc =
-      claim.documents_supporting.find((d) => d.exhibit === exhibit) ||
-      claim.documents_contradicting.find((d) => d.exhibit === exhibit);
-    if (doc) {
-      const role: "support" | "contradict" = claim.documents_supporting.some(
-        (d) => d.exhibit === exhibit,
-      )
-        ? "support"
-        : "contradict";
-      return { doc, claim, role };
-    }
-  }
-  return null;
+// Derive gaps and contradictions from the matrix rather than trusting the
+// top-level arrays the backend may send.
+export function deriveGaps(report: Report): Claim[] {
+  return report.matrix.filter((c) => c.gap);
+}
+
+export function deriveContradictions(report: Report): Claim[] {
+  return report.matrix.filter((c) => c.contradicting.length > 0);
 }
