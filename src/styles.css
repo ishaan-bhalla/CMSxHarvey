@@ -96,11 +96,22 @@
   transition: width .2s ease, height .2s ease, filter .2s ease;
   will-change: transform;
 }
-.cursor-hover .cursor-gavel { display: none; }
-.cursor-hover, .cursor-hover a, .cursor-hover button, .cursor-hover [data-hover],
-.cursor-hover input, .cursor-hover select, .cursor-hover textarea, .cursor-hover label {
-  cursor: pointer;
+.cursor-pointer-img {
+  position: fixed;
+  top: 0; left: 0;
+  width: 28px; height: 28px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top left;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.4));
+  transition: opacity .15s ease;
+  will-change: transform;
 }
+.cursor-hover .cursor-gavel { opacity: 0; }
+.cursor-hover .cursor-pointer-img { opacity: 1; }
 
 /* hide on touch */
 @media (hover: none) {
