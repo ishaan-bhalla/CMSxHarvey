@@ -313,7 +313,7 @@ function UploadPage() {
                 onClick={onAnalyse}
                 disabled={!canAnalyse}
                 data-hover
-                className="rounded-full bg-[#a3a3a3] px-8 py-4 text-sm font-type uppercase tracking-[0.25em] text-black disabled:opacity-30 hover:bg-[#f5f5f5] transition shadow-[0_10px_40px_-10px_rgba(245,158,11,.7)]"
+                className="rounded-full bg-[#dc2626] px-8 py-4 text-sm font-type uppercase tracking-[0.25em] text-black disabled:opacity-30 hover:bg-[#ef4444] transition shadow-[0_10px_40px_-10px_rgba(220,38,38,.7)]"
               >
                 Build the board →
               </button>
