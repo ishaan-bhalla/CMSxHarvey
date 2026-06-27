@@ -125,6 +125,11 @@
 .text-stroke {
   -webkit-text-stroke: 2px #000;
   color: #fff;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 45%, #c8c8c8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 0 rgba(0,0,0,.08);
 }
 
 /* ---------- Reveals ---------- */
