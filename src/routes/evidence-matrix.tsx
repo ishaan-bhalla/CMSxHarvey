@@ -439,13 +439,15 @@ function DocCard({ doc, kind }: { doc: DocEvidence; kind: "support" | "contradic
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
-          <span
-            className={`inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-bold tracking-wider ${
+          <Link
+            to="/evidence-matrix/document/$exhibit"
+            params={{ exhibit: doc.exhibit }}
+            className={`inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-bold tracking-wider transition hover:opacity-80 ${
               isSupport ? "bg-emerald-600 text-white" : "bg-rose-600 text-white"
             }`}
           >
             {doc.exhibit}
-          </span>
+          </Link>
           <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 capitalize">
             <Icon className="h-3.5 w-3.5" />
             {doc.doc_type}
@@ -465,9 +467,19 @@ function DocCard({ doc, kind }: { doc: DocEvidence; kind: "support" | "contradic
       >
         "{doc.passage}"
       </blockquote>
-      <div className="mt-2 flex items-center gap-1.5 text-[11px] text-slate-500">
-        <FileSearch className="h-3 w-3" />
-        {doc.location}
+      <div className="mt-2 flex items-center justify-between gap-2 text-[11px]">
+        <span className="inline-flex items-center gap-1.5 text-slate-500">
+          <FileSearch className="h-3 w-3" />
+          {doc.location}
+        </span>
+        <Link
+          to="/evidence-matrix/document/$exhibit"
+          params={{ exhibit: doc.exhibit }}
+          className="inline-flex items-center gap-1 font-semibold text-slate-700 hover:text-slate-900"
+        >
+          View document
+          <ArrowUpRight className="h-3 w-3" />
+        </Link>
       </div>
     </div>
   );
