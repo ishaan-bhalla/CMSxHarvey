@@ -40,10 +40,10 @@ function ReportPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-white/10">
+      <header className="border-b border-black/10">
         <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between gap-4">
           <div>
-            <Link to="/" className="text-xs text-muted-foreground hover:text-white">
+            <Link to="/" className="text-xs text-muted-foreground hover:text-black">
               ← New analysis
             </Link>
             <h1 className="mt-1 text-xl font-semibold tracking-tight">
@@ -53,17 +53,17 @@ function ReportPage() {
           <nav className="flex items-center gap-2 text-sm">
             <Link
               to="/board"
-              className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-white hover:bg-white/5"
+              className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-black hover:bg-black/5"
             >
               Board
             </Link>
             <Link
               to="/matrix"
-              className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-white hover:bg-white/5"
+              className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-black hover:bg-black/5"
             >
               Matrix
             </Link>
-            <span className="rounded-md bg-white/10 px-3 py-1.5 font-medium">
+            <span className="rounded-md bg-black/10 px-3 py-1.5 font-medium">
               Report
             </span>
           </nav>
@@ -86,7 +86,7 @@ function ReportPage() {
           </div>
 
           {result.gaps.length === 0 ? (
-            <div className="mt-4 rounded-lg border border-white/10 bg-card px-5 py-8 text-center text-sm text-muted-foreground">
+            <div className="mt-4 rounded-lg border border-black/10 bg-card px-5 py-8 text-center text-sm text-muted-foreground">
               No evidential gaps identified.
             </div>
           ) : (
@@ -104,7 +104,7 @@ function ReportPage() {
                       {g.paragraph_ref}
                     </span>
                   </div>
-                  <p className="mt-3 text-sm text-white">
+                  <p className="mt-3 text-sm text-black">
                     {g.allegation_summary}
                   </p>
                 </div>
@@ -127,7 +127,7 @@ function ReportPage() {
           </div>
 
           {result.contradictions.length === 0 ? (
-            <div className="mt-4 rounded-lg border border-white/10 bg-card px-5 py-8 text-center text-sm text-muted-foreground">
+            <div className="mt-4 rounded-lg border border-black/10 bg-card px-5 py-8 text-center text-sm text-muted-foreground">
               No contradictions identified.
             </div>
           ) : (
@@ -142,17 +142,17 @@ function ReportPage() {
                       {c.topic.replace(/_/g, " ")}
                     </span>
                   </div>
-                  <p className="mt-3 text-sm text-white font-medium">
+                  <p className="mt-3 text-sm text-black font-medium">
                     {c.allegation_summary}
                   </p>
                   <div className="mt-4 space-y-2">
                     {c.contradicting.map((x, idx) => (
                       <div
                         key={idx}
-                        className="rounded border border-[#525252]/30 bg-black/30 p-3 text-sm"
+                        className="rounded border border-[#525252]/30 bg-white/30 p-3 text-sm"
                       >
                         <div className="flex items-center justify-between gap-3 text-xs">
-                          <span className="font-medium text-white">
+                          <span className="font-medium text-black">
                             {x.witness}
                           </span>
                           <span className="text-muted-foreground">
@@ -177,10 +177,10 @@ function ReportPage() {
           )}
         </section>
 
-        <div className="flex items-center justify-between gap-3 pt-6 border-t border-white/10">
+        <div className="flex items-center justify-between gap-3 pt-6 border-t border-black/10">
           <Link
             to="/matrix"
-            className="rounded-md border border-white/15 px-4 py-2 text-sm hover:bg-white/5"
+            className="rounded-md border border-black/15 px-4 py-2 text-sm hover:bg-black/5"
           >
             ← Back to Matrix
           </Link>

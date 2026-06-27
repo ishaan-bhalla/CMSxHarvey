@@ -41,27 +41,27 @@
 
 :root {
   --radius: 0.375rem;
-  /* Deep ink / parchment legal palette */
-  --background: oklch(0.16 0 0);
-  --foreground: oklch(0.97 0 0);
-  --card: oklch(0.22 0 0);
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.22 0 0);
-  --popover-foreground: oklch(0.97 0 0);
+  /* Inverted: light parchment background, dark ink text */
+  --background: oklch(0.97 0 0);
+  --foreground: oklch(0.16 0 0);
+  --card: oklch(0.92 0 0);
+  --card-foreground: oklch(0.16 0 0);
+  --popover: oklch(0.92 0 0);
+  --popover-foreground: oklch(0.16 0 0);
 
-  --primary: oklch(0.95 0 0);
-  --primary-foreground: oklch(0.15 0 0);
-  --secondary: oklch(0.28 0 0);
-  --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.28 0 0);
-  --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.85 0 0);
-  --accent-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.2 0 0);
+  --primary-foreground: oklch(0.97 0 0);
+  --secondary: oklch(0.85 0 0);
+  --secondary-foreground: oklch(0.16 0 0);
+  --muted: oklch(0.85 0 0);
+  --muted-foreground: oklch(0.4 0 0);
+  --accent: oklch(0.3 0 0);
+  --accent-foreground: oklch(0.97 0 0);
   --destructive: oklch(0.55 0 0);
   --destructive-foreground: oklch(0.97 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.85 0 0);
+  --border: oklch(0 0 0 / 12%);
+  --input: oklch(0 0 0 / 14%);
+  --ring: oklch(0.3 0 0);
 }
 
 @layer base {
@@ -88,7 +88,7 @@
   top: 0; left: 0;
   width: 8px; height: 8px;
   border-radius: 9999px;
-  background: #f5f5f5;
+  background: #0a0a0a;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
@@ -99,7 +99,7 @@
   position: fixed;
   top: 0; left: 0;
   width: 38px; height: 38px;
-  border: 1px solid rgba(245,245,245,.55);
+  border: 1px solid rgba(10,10,10,.55);
   border-radius: 9999px;
   pointer-events: none;
   z-index: 9998;
@@ -123,7 +123,7 @@
 .font-type    { font-family: var(--font-mono-type); }
 
 .text-stroke {
-  -webkit-text-stroke: 1px rgba(255,255,255,.85);
+  -webkit-text-stroke: 1px rgba(0,0,0,.85);
   color: transparent;
 }
 

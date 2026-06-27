@@ -164,7 +164,7 @@ function BoardPage() {
   return (
     <div className="min-h-screen">
       {/* Top bar */}
-      <header className="sticky top-0 z-40 backdrop-blur bg-background/80 border-b border-white/10">
+      <header className="sticky top-0 z-40 backdrop-blur bg-background/80 border-b border-black/10">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between gap-4">
           <div className="flex items-center gap-6">
             <Link to="/" data-hover className="font-display text-xl tracking-tight hover:text-[#a3a3a3]">
@@ -186,10 +186,10 @@ function BoardPage() {
             >
               {tone.word} · {(result.trial_readiness_score * 100).toFixed(0)}%
             </span>
-            <Link to="/matrix" data-hover className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-white hover:bg-white/5">
+            <Link to="/matrix" data-hover className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-black hover:bg-black/5">
               Matrix
             </Link>
-            <Link to="/report" data-hover className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-white hover:bg-white/5">
+            <Link to="/report" data-hover className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-black hover:bg-black/5">
               Report
             </Link>
           </div>
@@ -197,17 +197,17 @@ function BoardPage() {
         {/* Filters */}
         <div className="mx-auto max-w-7xl px-6 pb-3 flex items-center gap-2 text-xs font-type uppercase tracking-[0.2em]">
           {([
-            ["all", "All", "#ffffff"],
+            ["all", "All", "#000000"],
             ["contradicting", `Contradictions (${result.contradictions_count})`, "#525252"],
-            ["gap", `Gaps (${result.gaps_count})`, "#a3a3a3"],
-            ["supporting", "Supported", "#e5e5e5"],
+            ["gap", `Gaps (${result.gaps_count})`, "#737373"],
+            ["supporting", "Supported", "#262626"],
           ] as const).map(([k, label, color]) => (
             <button
               key={k}
               data-hover
               onClick={() => setFilter(k)}
               className={`rounded-full border px-3 py-1 transition ${
-                filter === k ? "bg-white text-black border-white" : "border-white/15 text-muted-foreground hover:text-white"
+                filter === k ? "bg-black text-white border-black" : "border-black/15 text-muted-foreground hover:text-black"
               }`}
               style={filter === k ? {} : { color }}
             >

@@ -25,9 +25,9 @@ function readinessClass(r: string) {
 function confidencePill(c: string) {
   const base =
     "inline-block rounded px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider";
-  if (c === "HIGH") return `${base} bg-white/10 text-white`;
-  if (c === "MEDIUM") return `${base} bg-white/5 text-muted-foreground`;
-  return `${base} bg-white/5 text-muted-foreground`;
+  if (c === "HIGH") return `${base} bg-black/10 text-black`;
+  if (c === "MEDIUM") return `${base} bg-black/5 text-muted-foreground`;
+  return `${base} bg-black/5 text-muted-foreground`;
 }
 
 function rowTone(row: MatrixRow) {
@@ -36,7 +36,7 @@ function rowTone(row: MatrixRow) {
   if (row.gap) return "bg-[#a3a3a3]/10 hover:bg-[#a3a3a3]/15 border-l-2 border-[#a3a3a3]";
   if (row.supporting.length > 0)
     return "bg-[#e5e5e5]/10 hover:bg-[#e5e5e5]/15 border-l-2 border-[#e5e5e5]";
-  return "hover:bg-white/5 border-l-2 border-transparent";
+  return "hover:bg-black/5 border-l-2 border-transparent";
 }
 
 function MatrixPage() {
@@ -65,10 +65,10 @@ function MatrixPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-white/10">
+      <header className="border-b border-black/10">
         <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between gap-4">
           <div>
-            <Link to="/" className="text-xs text-muted-foreground hover:text-white">
+            <Link to="/" className="text-xs text-muted-foreground hover:text-black">
               ← New analysis
             </Link>
             <h1 className="mt-1 text-xl font-semibold tracking-tight">
@@ -78,16 +78,16 @@ function MatrixPage() {
           <nav className="flex items-center gap-2 text-sm">
             <Link
               to="/board"
-              className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-white hover:bg-white/5"
+              className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-black hover:bg-black/5"
             >
               Board
             </Link>
-            <span className="rounded-md bg-white/10 px-3 py-1.5 font-medium">
+            <span className="rounded-md bg-black/10 px-3 py-1.5 font-medium">
               Matrix
             </span>
             <Link
               to="/report"
-              className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-white hover:bg-white/5"
+              className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-black hover:bg-black/5"
             >
               Report
             </Link>
@@ -97,7 +97,7 @@ function MatrixPage() {
 
       <main className="mx-auto max-w-7xl px-6 py-8">
         <section className="grid gap-4 md:grid-cols-3 mb-8">
-          <div className="rounded-lg border border-white/10 bg-card p-5">
+          <div className="rounded-lg border border-black/10 bg-card p-5">
             <div className="text-xs uppercase tracking-wider text-muted-foreground">
               Primary witness
             </div>
@@ -108,7 +108,7 @@ function MatrixPage() {
               vs {result.comparison_witnesses.join(", ")}
             </div>
           </div>
-          <div className="rounded-lg border border-white/10 bg-card p-5">
+          <div className="rounded-lg border border-black/10 bg-card p-5">
             <div className="text-xs uppercase tracking-wider text-muted-foreground">
               Total claims
             </div>
@@ -119,7 +119,7 @@ function MatrixPage() {
               {result.contradictions_count} contradicted · {result.gaps_count} gaps
             </div>
           </div>
-          <div className="rounded-lg border border-white/10 bg-card p-5">
+          <div className="rounded-lg border border-black/10 bg-card p-5">
             <div className="text-xs uppercase tracking-wider text-muted-foreground">
               Trial readiness
             </div>
@@ -134,8 +134,8 @@ function MatrixPage() {
           </div>
         </section>
 
-        <section className="rounded-lg border border-white/10 bg-card overflow-hidden">
-          <div className="grid grid-cols-12 px-5 py-3 text-xs uppercase tracking-wider text-muted-foreground border-b border-white/10 bg-white/5">
+        <section className="rounded-lg border border-black/10 bg-card overflow-hidden">
+          <div className="grid grid-cols-12 px-5 py-3 text-xs uppercase tracking-wider text-muted-foreground border-b border-black/10 bg-black/5">
             <div className="col-span-5">Claim</div>
             <div className="col-span-2">Type</div>
             <div className="col-span-2">Topic</div>
@@ -144,7 +144,7 @@ function MatrixPage() {
             <div className="col-span-1 text-center">Gap</div>
           </div>
 
-          <div className="divide-y divide-white/5">
+          <div className="divide-y divide-black/5">
             {result.matrix.map((row, i) => {
               const open = expanded === i;
               return (
@@ -154,7 +154,7 @@ function MatrixPage() {
                     className={`w-full text-left grid grid-cols-12 px-5 py-4 text-sm transition ${rowTone(row)}`}
                   >
                     <div className="col-span-5 pr-4">
-                      <div className="line-clamp-2 text-white">
+                      <div className="line-clamp-2 text-black">
                         {row.allegation_summary}
                       </div>
                       <div className="mt-1 text-[11px] text-muted-foreground">
@@ -179,20 +179,20 @@ function MatrixPage() {
                   </button>
 
                   {open && (
-                    <div className="px-5 py-5 bg-black/30 border-t border-white/10 space-y-5 text-sm">
+                    <div className="px-5 py-5 bg-white/30 border-t border-black/10 space-y-5 text-sm">
                       <div>
                         <div className="text-xs uppercase tracking-wider text-muted-foreground">
                           Full claim
                         </div>
-                        <p className="mt-1 text-white">{row.allegation_summary}</p>
+                        <p className="mt-1 text-black">{row.allegation_summary}</p>
                         <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
-                          <span className="rounded bg-white/10 px-2 py-0.5">
+                          <span className="rounded bg-black/10 px-2 py-0.5">
                             {row.allegation_type}
                           </span>
-                          <span className="rounded bg-white/10 px-2 py-0.5 capitalize">
+                          <span className="rounded bg-black/10 px-2 py-0.5 capitalize">
                             {row.topic.replace(/_/g, " ")}
                           </span>
-                          <span className="rounded bg-white/10 px-2 py-0.5">
+                          <span className="rounded bg-black/10 px-2 py-0.5">
                             {row.paragraph_ref}
                           </span>
                           <span className={confidencePill(row.confidence)}>

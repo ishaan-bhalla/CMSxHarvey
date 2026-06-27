@@ -84,14 +84,14 @@ function Marquee() {
     "Witness #2", "Paragraph 42", "Confidence: HIGH",
   ];
   return (
-    <div className="overflow-hidden border-y border-white/10 py-6 bg-black/30">
+    <div className="overflow-hidden border-y border-black/10 py-6 bg-white/30">
       <div className="marquee-track whitespace-nowrap font-display text-5xl md:text-7xl">
         {[...items, ...items].map((t, i) => (
           <span key={i} className="flex items-center gap-12">
             <span className={i % 3 === 0 ? "text-[#e5e5e5]" : i % 3 === 1 ? "text-[#525252]" : "text-[#a3a3a3]"}>
               {t}
             </span>
-            <span className="text-white/30">✦</span>
+            <span className="text-black/30">✦</span>
           </span>
         ))}
       </div>
@@ -167,14 +167,14 @@ function UploadPage() {
     return (
       <div className="min-h-screen flex items-center justify-center px-6">
         <div className="max-w-xl w-full text-center">
-          <div className="mx-auto h-20 w-20 rounded-full border-2 border-white/15 border-t-[#a3a3a3] animate-spin" />
+          <div className="mx-auto h-20 w-20 rounded-full border-2 border-black/15 border-t-[#a3a3a3] animate-spin" />
           <h1 className="mt-8 font-display text-4xl tracking-tight">
             BUILDING THE BOARD
           </h1>
           <p className="mt-3 font-type text-muted-foreground">
             Claude is reading {comparisons.length + 1} statements. 2–3 minutes.
           </p>
-          <div className="mt-6 inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/5 px-4 py-2 text-sm tabular-nums font-type">
+          <div className="mt-6 inline-flex items-center gap-3 rounded-md border border-black/10 bg-black/5 px-4 py-2 text-sm tabular-nums font-type">
             <span className="h-2 w-2 rounded-full bg-[#a3a3a3] animate-pulse" />
             Elapsed {mins}:{secs.toString().padStart(2, "0")}
           </div>
@@ -213,7 +213,7 @@ function UploadPage() {
 
         <div className="grid gap-8 lg:grid-cols-2">
           <Reveal>
-            <div className="rounded-lg border border-white/10 bg-card p-6 transition hover:border-[#a3a3a3]/40">
+            <div className="rounded-lg border border-black/10 bg-card p-6 transition hover:border-[#a3a3a3]/40">
               <div className="flex items-baseline justify-between">
                 <h3 className="font-display text-2xl tracking-tight text-foreground">Primary witness</h3>
                 <span className="text-xs text-muted-foreground font-type">
@@ -224,7 +224,7 @@ function UploadPage() {
                 The witness whose claims will be tested against the others.
               </p>
               <select
-                className="mt-4 w-full rounded-md border border-white/15 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#a3a3a3]"
+                className="mt-4 w-full rounded-md border border-black/15 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#a3a3a3]"
                 value={primary}
                 onChange={(e) => {
                   setPrimary(e.target.value);
@@ -243,7 +243,7 @@ function UploadPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="rounded-lg border border-white/10 bg-card p-6 transition hover:border-[#e5e5e5]/40">
+            <div className="rounded-lg border border-black/10 bg-card p-6 transition hover:border-[#e5e5e5]/40">
               <div className="flex items-baseline justify-between">
                 <h3 className="font-display text-2xl tracking-tight text-foreground">Comparison witnesses</h3>
                 <span className="text-xs text-muted-foreground font-type">
@@ -253,7 +253,7 @@ function UploadPage() {
               <p className="mt-1 text-sm text-muted-foreground font-type">
                 Choose 2 to 4 witnesses to cross-reference.
               </p>
-              <div className="mt-4 max-h-72 overflow-y-auto rounded-md border border-white/10 divide-y divide-white/5">
+              <div className="mt-4 max-h-72 overflow-y-auto rounded-md border border-black/10 divide-y divide-black/5">
                 {filteredDocs.length === 0 && (
                   <div className="px-3 py-6 text-sm text-muted-foreground text-center font-type">
                     {primary ? "No other witnesses." : "Select a primary first."}
@@ -266,7 +266,7 @@ function UploadPage() {
                     <label
                       key={d}
                       data-hover
-                      className={`flex items-center gap-3 px-3 py-2 text-sm hover:bg-white/5 font-type transition ${
+                      className={`flex items-center gap-3 px-3 py-2 text-sm hover:bg-black/5 font-type transition ${
                         disabled ? "opacity-40" : ""
                       }`}
                     >
@@ -302,7 +302,7 @@ function UploadPage() {
                 <Link
                   to="/board"
                   data-hover
-                  className="inline-block rounded-full border border-white/20 px-5 py-3 text-sm font-type uppercase tracking-[0.2em] hover:bg-white/5"
+                  className="inline-block rounded-full border border-black/20 px-5 py-3 text-sm font-type uppercase tracking-[0.2em] hover:bg-black/5"
                 >
                   Previous board →
                 </Link>
@@ -313,7 +313,7 @@ function UploadPage() {
                 onClick={onAnalyse}
                 disabled={!canAnalyse}
                 data-hover
-                className="rounded-full bg-[#dc2626] px-8 py-4 text-sm font-type uppercase tracking-[0.25em] text-black disabled:opacity-30 hover:bg-[#ef4444] transition shadow-[0_10px_40px_-10px_rgba(220,38,38,.7)]"
+                className="rounded-full bg-[#dc2626] px-8 py-4 text-sm font-type uppercase tracking-[0.25em] text-white disabled:opacity-30 hover:bg-[#ef4444] transition shadow-[0_10px_40px_-10px_rgba(220,38,38,.7)]"
               >
                 Build the board →
               </button>
