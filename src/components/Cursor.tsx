@@ -30,6 +30,7 @@ export function Cursor() {
         document.body.classList.remove("cursor-hover");
       }
     };
+    let raf = 0;
     const pointer = document.getElementById("cursor-pointer");
     const loop = () => {
       pos.current.rx += (pos.current.x - pos.current.rx) * 0.28;
