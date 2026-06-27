@@ -194,7 +194,7 @@ function BoardPage() {
               className="rounded-full px-3 py-1 text-xs uppercase tracking-[0.2em]"
               style={{ background: tone.bg, color: tone.fg }}
             >
-              {tone.word} · {(result.trial_readiness_score * 100).toFixed(0)}%
+              {tone.word} · {result.trial_readiness_score.toFixed(0)}%
             </span>
             <Link to="/matrix" data-hover className="rounded-md px-3 py-1.5 text-muted-foreground hover:text-black hover:bg-black/5">
               Matrix

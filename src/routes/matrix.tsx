@@ -129,7 +129,7 @@ function MatrixPage() {
               {result.trial_readiness}
             </div>
             <div className="mt-1 text-xs text-muted-foreground tabular-nums">
-              Score {(result.trial_readiness_score * 100).toFixed(0)}%
+              Score {result.trial_readiness_score.toFixed(0)}%
             </div>
           </div>
         </section>
