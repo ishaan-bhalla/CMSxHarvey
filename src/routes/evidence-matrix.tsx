@@ -440,7 +440,7 @@ function DocCard({ doc, kind }: { doc: DocEvidence; kind: "support" | "contradic
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
           <Link
-            to="/evidence-matrix/document/$exhibit"
+            to="/evidence-document/$exhibit"
             params={{ exhibit: doc.exhibit }}
             className={`inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-bold tracking-wider transition hover:opacity-80 ${
               isSupport ? "bg-emerald-600 text-white" : "bg-rose-600 text-white"
@@ -473,7 +473,7 @@ function DocCard({ doc, kind }: { doc: DocEvidence; kind: "support" | "contradic
           {doc.location}
         </span>
         <Link
-          to="/evidence-matrix/document/$exhibit"
+          to="/evidence-document/$exhibit"
           params={{ exhibit: doc.exhibit }}
           className="inline-flex items-center gap-1 font-semibold text-slate-700 hover:text-slate-900"
         >

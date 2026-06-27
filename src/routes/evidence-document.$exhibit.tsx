@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { findExhibit, type DocType } from "../lib/evidence-data";
 
-export const Route = createFileRoute("/evidence-matrix/document/$exhibit")({
+export const Route = createFileRoute("/evidence-document/$exhibit")({
   head: ({ params }) => ({
     meta: [
       { title: `Exhibit ${params.exhibit} — Evidence Matrix` },
