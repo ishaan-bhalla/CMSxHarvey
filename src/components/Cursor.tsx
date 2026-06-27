@@ -3,7 +3,7 @@ import gavelUrl from "../assets/magnifier-cursor.png";
 
 export function Cursor() {
   const gavel = useRef<HTMLDivElement>(null);
-  const pos = useRef({ x: 0, y: 0, rx: 0, ry: 0, rot: -20, tRot: -20 });
+  const pos = useRef({ x: 0, y: 0, rx: 0, ry: 0, rot: 0, tRot: 0 });
 
   useEffect(() => {
     let lastX = 0;
