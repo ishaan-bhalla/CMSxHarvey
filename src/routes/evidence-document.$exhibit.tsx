@@ -124,7 +124,7 @@ function DocumentPage() {
 
         {/* PDF viewer(s) */}
         {(() => {
-          const urls = Array.isArray(doc.pdf_url)
+          const urls: string[] = Array.isArray(doc.pdf_url)
             ? doc.pdf_url
             : doc.pdf_url
             ? [doc.pdf_url]
