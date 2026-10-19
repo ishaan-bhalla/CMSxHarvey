@@ -68,17 +68,9 @@ That is the kind of tension a lawyer needs to see early, and also the kind of ca
 
 ## 3. Architecture
 
-```
-Witness PDFs ─► parse ─► chunk (3,000 chars, 500 overlap) ─► pick the chunks most relevant to each allegation
-                                                                          │
-                       Claude API: classify each witness against each allegation, with a quoted passage
-                                                                          │
-                       verify the quote against the source text ─► SUPPORTED / CONTRADICTED / GAP / UNVERIFIED
-                                                                          │
-         Perplexity: UK case law per allegation   Neo4j Aura: witness-allegation graph   JSON storage: reviews, snapshots
-                                                                          │
-                                     FastAPI (16 endpoints, background job queue) ─► React frontend
-```
+[![Architecture diagram of ishaan-bhalla/cmsxharvey](https://gitdiagram.com/ishaan-bhalla/cmsxharvey/diagram.png)](https://gitdiagram.com/ishaan-bhalla/cmsxharvey?utm_source=readme&utm_medium=picture)
+
+*Architecture diagram (GitDiagram; click to explore it interactively).*
 
 ## 4. How the analysis works
 
