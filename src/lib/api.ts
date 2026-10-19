@@ -40,7 +40,10 @@ export async function pollJob(jobId: string): Promise<{
 }
 
 export async function fetchDemo(): Promise<AnalysisResult> {
-  const r = await fetch(`${BASE}/demo`);
+  // The demo is a saved result, so serve it with the site (instant, no backend
+  // needed) and only fall back to the backend if the static copy is missing.
+  let r = await fetch("/demo_result.json");
+  if (!r.ok) r = await fetch(`${BASE}/demo`);
   if (!r.ok) throw new Error(`Demo not available (${r.status})`);
   const raw = await r.json();
   return transformPleadingResult(raw);
