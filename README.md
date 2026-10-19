@@ -144,7 +144,7 @@ Or run the backend in Docker: `docker build -t pleading-to-proof . && docker run
 
 Built in 24 hours by **Ishaan Bhalla** and **[Tanveer Bakshi](https://github.com/TanveerBakshi)**. The frontend repository is [TanveerBakshi/evidence-weaver](https://github.com/TanveerBakshi/evidence-weaver).
 
-- **Ishaan Bhalla:** the backend and AI pipeline: FastAPI service and job queue, Claude classification prompts, citation verification, retrieval and chunking, Neo4j graph, Perplexity case-law search, review audit trail, snapshots, and the Docker deployment.
-- **Tanveer Bakshi:** the React frontend, built with [Lovable](https://lovable.dev) (hence the `lovable-dev[bot]` commits).
+- **Ishaan Bhalla:** the backend and AI pipeline (FastAPI service and job queue, Claude classification prompts, citation verification, retrieval and chunking, Neo4j graph, Perplexity case-law search, review audit trail, snapshots, Docker deployment), plus the frontend's API client and data layer that connect it to the UI, and the graph page.
+- **Tanveer Bakshi:** the React frontend's design and pages, built with [Lovable](https://lovable.dev) (hence the `lovable-dev[bot]` commits).
 
 Dataset: Post Office Horizon IT Inquiry witness statements, provided by CMS for the hackathon.
