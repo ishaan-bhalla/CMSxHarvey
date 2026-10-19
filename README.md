@@ -68,7 +68,7 @@ That is the kind of tension a lawyer needs to see early, and also the kind of ca
 
 ## 3. Architecture
 
-[![Architecture diagram of ishaan-bhalla/cmsxharvey](https://gitdiagram.com/ishaan-bhalla/cmsxharvey/diagram.png)](https://gitdiagram.com/ishaan-bhalla/cmsxharvey?utm_source=readme&utm_medium=picture)
+[![Architecture diagram of ishaan-bhalla/cmsxharvey](docs/architecture.png)](https://gitdiagram.com/ishaan-bhalla/cmsxharvey?utm_source=readme&utm_medium=picture)
 
 *Architecture diagram (GitDiagram; click to explore it interactively).*
 
