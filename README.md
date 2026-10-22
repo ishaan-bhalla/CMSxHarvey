@@ -8,7 +8,6 @@
 ![Claude API](https://img.shields.io/badge/Claude_API-evidence_classification-D97757?style=for-the-badge)
 ![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![Neo4j](https://img.shields.io/badge/Neo4j-graph-4581C3?style=for-the-badge&logo=neo4j&logoColor=white)
-[![Architecture diagram](https://gitdiagram.com/diagram-badge.svg)](https://gitdiagram.com/ishaan-bhalla/cmsxharvey?utm_source=readme&utm_medium=badge)
 
 <a href="https://cmsxharvey.vercel.app/"><img src="docs/landing.png" alt="Pleading-to-Proof landing page" width="90%"></a>
 
@@ -69,7 +68,7 @@ That is the kind of tension a lawyer needs to see early, and also the kind of ca
 
 ## 3. Architecture
 
-[![Architecture diagram of ishaan-bhalla/cmsxharvey](docs/architecture.png)](https://gitdiagram.com/ishaan-bhalla/cmsxharvey?utm_source=readme&utm_medium=picture)
+[![Architecture diagram of ishaan-bhalla/cmsxharvey](https://gitdiagram.com/ishaan-bhalla/cmsxharvey/diagram.png)](https://gitdiagram.com/ishaan-bhalla/cmsxharvey?utm_source=readme&utm_medium=picture)
 
 *Architecture diagram (GitDiagram; click to explore it interactively).*
 
