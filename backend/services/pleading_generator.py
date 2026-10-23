@@ -5,6 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from clients.claude_client import call_claude
 from clients.perplexity_client import search_case_law
 import json
+import re
 
 def verify_quote(quote: str, raw_text: str) -> bool:
     """
@@ -14,9 +15,18 @@ def verify_quote(quote: str, raw_text: str) -> bool:
     if not quote:
         return False
     # Normalise whitespace for matching
-    normalised_quote = " ".join(quote.split()).lower()
     normalised_text = " ".join(raw_text.split()).lower()
-    return normalised_quote in normalised_text
+    # A quote joined with an ellipsis passes only if every piece is verbatim and in order
+    pieces = [" ".join(p.split()).lower().strip(" .") for p in re.split(r"\.\.\.|…", quote)]
+    position = 0
+    for piece in pieces:
+        if not piece:
+            continue
+        found = normalised_text.find(piece, position)
+        if found == -1:
+            return False
+        position = found + len(piece)
+    return position > 0
 
 HORIZON_PLEADINGS = [
     {

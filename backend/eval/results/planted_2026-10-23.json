@@ -1,0 +1,618 @@
+{
+  "date": "2026-10-23",
+  "cases": 24,
+  "repeats": 3,
+  "accuracy": "70/72",
+  "by_expected": {
+    "SUPPORTS": {
+      "correct": 24,
+      "total": 24
+    },
+    "CONTRADICTS": {
+      "correct": 24,
+      "total": 24
+    },
+    "NOT_ADDRESSED": {
+      "correct": 22,
+      "total": 24
+    }
+  },
+  "false_evidence_on_hard_negatives": 2,
+  "quotes_from_planted_paragraph": "50/50",
+  "confusion": {
+    "CONTRADICTS -> CONTRADICTS": 24,
+    "NOT_ADDRESSED -> CONTRADICTS": 2,
+    "NOT_ADDRESSED -> NOT_ADDRESSED": 22,
+    "SUPPORTS -> SUPPORTS": 24
+  },
+  "usage": {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "llm_calls": 72,
+    "failed_calls": 0,
+    "input_tokens": 28587,
+    "output_tokens": 12374,
+    "cost_usd": 0.0,
+    "latency_ms_p50": 859,
+    "latency_ms_p95": 1184,
+    "wall_seconds": 265.5
+  },
+  "rows": [
+    {
+      "id": "A1-S",
+      "repeat": 0,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A1-C",
+      "repeat": 0,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A1-N",
+      "repeat": 0,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "CONTRADICTS",
+      "correct": false,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A2-S",
+      "repeat": 0,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A2-C",
+      "repeat": 0,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A2-N",
+      "repeat": 0,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A3-S",
+      "repeat": 0,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A3-C",
+      "repeat": 0,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A3-N",
+      "repeat": 0,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A4-S",
+      "repeat": 0,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A4-C",
+      "repeat": 0,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A4-N",
+      "repeat": 0,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A5-S",
+      "repeat": 0,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A5-C",
+      "repeat": 0,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A5-N",
+      "repeat": 0,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A6-S",
+      "repeat": 0,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A6-C",
+      "repeat": 0,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A6-N",
+      "repeat": 0,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A7-S",
+      "repeat": 0,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A7-C",
+      "repeat": 0,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A7-N",
+      "repeat": 0,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A8-S",
+      "repeat": 0,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A8-C",
+      "repeat": 0,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A8-N",
+      "repeat": 0,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A1-S",
+      "repeat": 1,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A1-C",
+      "repeat": 1,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A1-N",
+      "repeat": 1,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "CONTRADICTS",
+      "correct": false,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A2-S",
+      "repeat": 1,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A2-C",
+      "repeat": 1,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A2-N",
+      "repeat": 1,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A3-S",
+      "repeat": 1,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A3-C",
+      "repeat": 1,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A3-N",
+      "repeat": 1,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A4-S",
+      "repeat": 1,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A4-C",
+      "repeat": 1,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A4-N",
+      "repeat": 1,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A5-S",
+      "repeat": 1,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A5-C",
+      "repeat": 1,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A5-N",
+      "repeat": 1,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A6-S",
+      "repeat": 1,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A6-C",
+      "repeat": 1,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A6-N",
+      "repeat": 1,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A7-S",
+      "repeat": 1,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A7-C",
+      "repeat": 1,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A7-N",
+      "repeat": 1,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A8-S",
+      "repeat": 1,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A8-C",
+      "repeat": 1,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A8-N",
+      "repeat": 1,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A1-S",
+      "repeat": 2,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A1-C",
+      "repeat": 2,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A1-N",
+      "repeat": 2,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A2-S",
+      "repeat": 2,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A2-C",
+      "repeat": 2,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A2-N",
+      "repeat": 2,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A3-S",
+      "repeat": 2,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A3-C",
+      "repeat": 2,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A3-N",
+      "repeat": 2,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A4-S",
+      "repeat": 2,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A4-C",
+      "repeat": 2,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A4-N",
+      "repeat": 2,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A5-S",
+      "repeat": 2,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A5-C",
+      "repeat": 2,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A5-N",
+      "repeat": 2,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A6-S",
+      "repeat": 2,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A6-C",
+      "repeat": 2,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A6-N",
+      "repeat": 2,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A7-S",
+      "repeat": 2,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A7-C",
+      "repeat": 2,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A7-N",
+      "repeat": 2,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    },
+    {
+      "id": "A8-S",
+      "repeat": 2,
+      "expected": "SUPPORTS",
+      "verdict": "SUPPORTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A8-C",
+      "repeat": 2,
+      "expected": "CONTRADICTS",
+      "verdict": "CONTRADICTS",
+      "correct": true,
+      "quote_in_planted_paragraph": true
+    },
+    {
+      "id": "A8-N",
+      "repeat": 2,
+      "expected": "NOT_ADDRESSED",
+      "verdict": "NOT_ADDRESSED",
+      "correct": true,
+      "quote_in_planted_paragraph": null
+    }
+  ]
+}

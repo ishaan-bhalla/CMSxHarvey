@@ -20,6 +20,7 @@
 - **133 witness statements, 8 formal allegations.** Each allegation is checked against the statements and marked SUPPORTED, CONTRADICTED, EVIDENTIAL GAP or UNVERIFIED, with a trial-readiness score.
 - **Every cited passage is checked against its source.** A verdict only counts if its quoted passage is found word for word (ignoring spacing and case) in the original statement; otherwise it is downgraded to UNVERIFIED. In the saved demo run, all 13 cited passages passed.
 - **Demo run (6 witnesses): 6 of 8 allegations evidenced (score 75%, STRONG), 1 contradiction, 2 evidential gaps,** each with UK case law retrieved alongside.
+- **Planted-evidence test: 70/72 correct** over 24 synthetic cases run 3 times, with every cited quote (50/50) traced to the planted passage. **Stability test:** verdicts that find evidence don't always repeat between runs (see [Evaluation](#5-evaluation)).
 
 ## Contents
 
@@ -27,11 +28,12 @@
 2. [Example: a contradiction it surfaced](#2-example-a-contradiction-it-surfaced)
 3. [Architecture](#3-architecture)
 4. [How the analysis works](#4-how-the-analysis-works)
-5. [Limitations](#5-limitations)
-6. [Live demo and deployment](#6-live-demo-and-deployment)
-7. [Run it locally](#7-run-it-locally)
-8. [API](#8-api)
-9. [Team](#9-team)
+5. [Evaluation](#5-evaluation)
+6. [Limitations](#6-limitations)
+7. [Live demo and deployment](#7-live-demo-and-deployment)
+8. [Run it locally](#8-run-it-locally)
+9. [API](#9-api)
+10. [Team](#10-team)
 
 ## 1. What it does
 
@@ -77,29 +79,66 @@ That is the kind of tension a lawyer needs to see early, and also the kind of ca
 - **Background jobs.** An analysis takes minutes, so `POST /analyze/pleading` returns a job ID immediately, and the frontend polls `GET /jobs/{id}` for progress.
 - **Retrieval.** Each statement is split into overlapping 3,000-character chunks. The chunks most relevant to an allegation's topic are scored by keyword and sent to the model, so whole statements don't need to fit in one prompt.
 - **Classification.** Claude classifies each witness against each allegation and must return the passage it relied on (prompts in `backend/prompts/`).
-- **Verification.** The quoted passage is searched for in the statement's full text, ignoring spacing and case. No match means UNVERIFIED, not a verdict.
+- **Verification.** The quoted passage is searched for in the statement's full text, ignoring spacing and case. A quote joined with "..." passes only if every piece is found, in order. No match means UNVERIFIED, not a verdict.
 - **Case law.** Perplexity retrieves relevant UK authorities for each allegation (in the demo, the Bates and Hamilton Post Office judgments), with source links.
+- **Failures are visible.** Each model call retries only on rate limits, server errors and dropped connections; other errors fail at once. A failed witness-allegation call is listed as failed on that row instead of passing as "no evidence", and the job only fails if every call does. A failed case-law or graph step adds a warning instead of losing the result.
+- **Cost and time.** Every analysis records its model, number of calls, failed calls, input and output tokens, cost in USD (from a dated price table) and p50/p95 call latency in the result's `usage` field.
+- **Model choice.** `LLM_PROVIDER` picks Claude (`anthropic`, the default), an open-weight model on Groq's free tier (`groq`, gpt-oss-120b) or a local Ollama model (`ollama`, gpt-oss:20b). The evaluation below used the open models.
 - **Human review and audit trail.** Every verdict can be accepted, overruled or rejected, and each decision is timestamped.
 - **Snapshots.** The case state can be saved over time, and change detection shows what moved when new evidence arrived.
 
-## 5. Limitations
+## 5. Evaluation
+
+There are no lawyer-labelled verdicts for these statements, so the tests check what can be checked without them.
+
+**Planted evidence** (`backend/eval/planted_evidence.py`). For each allegation, three synthetic paragraphs were written: one that supports it, one that contradicts it, and a hard negative that shares its keywords but says nothing about it (e.g. a village fête's cash shortfall for the Horizon allegation). Each is hidden between unrelated filler and classified. The right answer is known, and a cited quote must come from the planted paragraph. Run 3 times with gpt-oss-120b on Groq (23 Oct 2026):
+
+| | Result |
+|---|---|
+| Supporting paragraphs found | 24/24 |
+| Contradicting paragraphs found | 24/24 |
+| Hard negatives left as "not addressed" | 22/24 |
+| **Total** | **70/72** |
+| Cited quotes traced to the planted paragraph | 50/50 |
+| Calls / tokens in / tokens out | 72 / 28,587 / 12,374 |
+| Call latency p50 / p95 | 0.86 s / 1.18 s |
+| Cost | $0 (free tier) |
+
+Both misses were the same hard negative: the fête shortfall was taken as contradicting the Horizon allegation in 2 of 3 runs. Keyword-similar evidence is a real failure mode.
+
+**Stability** (`backend/eval/stability.py`). The same 6 real witness statements were analysed against all 8 allegations 3 times, with gpt-oss:20b running locally in Ollama (Groq's daily token limit ran out):
+
+| | Result |
+|---|---|
+| Witness-allegation pairs with the same verdict all 3 times | 42/48 |
+| ...of the 6 pairs where any run found evidence | **0/6** |
+| Supports flipped to contradicts, or the reverse | never |
+| Calls per run / failed calls | 48 / 0 |
+| Call latency p50 / p95 (laptop) | 4.2-6.1 s / 8.0-11.0 s |
+| Time per run | 3.8-5.1 min |
+| Cost | $0 |
+
+Every pair that found evidence in one run came back "not addressed" in another, but no verdict ever flipped sides. So a single run's gaps aren't reliable: an allegation shown as an evidential gap may have evidence that a second run would find. Running each pair several times and keeping any verified quote would fix this at the cost of more calls. Results are saved in `backend/eval/results/`.
+
+## 6. Limitations
 
 - **Retrieval can miss evidence.** Chunks are chosen by keyword relevance, so a passage that uses different wording may never reach the model, and the allegation could then show as a false gap.
 - **The verdicts are model judgements.** A verified quote proves the passage exists, not that the model read it correctly. The Ismay example above is arguable, which is why review exists.
-- **No accuracy benchmark yet.** Verdicts haven't been compared against a lawyer's labels. That would be the next step.
+- **No lawyer-labelled benchmark.** The planted test checks that clear evidence is found and correctly sided, and the stability test checks repeatability; neither checks real verdicts against a lawyer's labels. That would be the next step.
+- **Evidence detection varies between runs.** See the stability test above.
 - **Demo scope.** The saved demo uses 6 of the 133 statements.
 - **Not legal advice.** It's a triage tool to show a lawyer where to look.
 
-## 6. Live demo and deployment
+## 7. Live demo and deployment
 
 **[cmsxharvey.vercel.app](https://cmsxharvey.vercel.app/)** loads the pre-computed demo result (6 witnesses, 8 allegations). Running new analyses needs the witness statements and API keys, so it only works locally. The free backend may take up to a minute to wake on the first request.
 
 - **Frontend:** React and Vite, hosted on Vercel.
 - **Backend:** FastAPI in Docker, first on Railway and now on Render (`Dockerfile`, `railway.json`).
 
-## 7. Run it locally
+## 8. Run it locally
 
-Needs Python 3.11+, Node.js 18+ with bun, and API keys for Anthropic, Perplexity and Neo4j Aura (the free tier is enough).
+Needs Python 3.11+, Node.js 18+ with bun, and API keys for Anthropic, Perplexity and Neo4j Aura (the free tier is enough). To run without an Anthropic key, set `LLM_PROVIDER=groq` with a free `GROQ_API_KEY`, or `LLM_PROVIDER=ollama` with Ollama running locally.
 
 ```bash
 git clone https://github.com/ishaan-bhalla/CMSxHarvey.git
@@ -113,13 +152,17 @@ uvicorn backend.main:app --reload --port 8000     # API docs at http://localhost
 
 curl -X POST http://localhost:8000/demo/precompute   # optional: rebuild the cached demo result
 
+python backend/eval/planted_evidence.py --repeats 3                  # planted-evidence test
+python backend/eval/stability.py --data-dir data/raw --runs 3 \
+    --witnesses "Steve Bansal" "Roderick Mark Ismay"                  # stability test
+
 bun install
 VITE_API_URL=http://localhost:8000 bun run dev       # frontend at http://localhost:8080
 ```
 
 Or run the backend in Docker: `docker build -t pleading-to-proof . && docker run -p 8080:8080 --env-file .env pleading-to-proof`.
 
-## 8. API
+## 9. API
 
 | Endpoint | Method | Purpose |
 |---|---|---|
@@ -139,7 +182,7 @@ Or run the backend in Docker: `docker build -t pleading-to-proof . && docker run
 | `/snapshots/compare/{a}/{b}` | GET | What changed between two snapshots |
 | `/graph` | GET | Witness-allegation graph data |
 
-## 9. Team
+## 10. Team
 
 Built in 24 hours by **Ishaan Bhalla** and **[Tanveer Bakshi](https://github.com/TanveerBakshi)**. The frontend repository is [TanveerBakshi/evidence-weaver](https://github.com/TanveerBakshi/evidence-weaver).
 

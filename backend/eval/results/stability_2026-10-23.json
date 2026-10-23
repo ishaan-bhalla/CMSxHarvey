@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-23",
+  "witnesses": [
+    "Peter John Rowley",
+    "Roderick Mark Ismay",
+    "Steve Bansal",
+    "Martin John Smith",
+    "Simon Clarke",
+    "Patrick Bourke"
+  ],
+  "runs": 3,
+  "pairs": 48,
+  "same_verdict_every_run": "42/48",
+  "same_verdict_where_any_run_found_evidence": "0/6",
+  "verdict_counts_run1": {
+    "NOT_ADDRESSED/UNVERIFIED": 44,
+    "CONTRADICTS": 3,
+    "SUPPORTS": 1
+  },
+  "flips": [
+    {
+      "allegation_id": 2,
+      "witness": "Patrick Bourke",
+      "verdicts": [
+        "NOT_ADDRESSED/UNVERIFIED",
+        "CONTRADICTS",
+        "NOT_ADDRESSED/UNVERIFIED"
+      ]
+    },
+    {
+      "allegation_id": 2,
+      "witness": "Peter John Rowley",
+      "verdicts": [
+        "CONTRADICTS",
+        "CONTRADICTS",
+        "NOT_ADDRESSED/UNVERIFIED"
+      ]
+    },
+    {
+      "allegation_id": 2,
+      "witness": "Simon Clarke",
+      "verdicts": [
+        "CONTRADICTS",
+        "CONTRADICTS",
+        "NOT_ADDRESSED/UNVERIFIED"
+      ]
+    },
+    {
+      "allegation_id": 4,
+      "witness": "Martin John Smith",
+      "verdicts": [
+        "SUPPORTS",
+        "SUPPORTS",
+        "NOT_ADDRESSED/UNVERIFIED"
+      ]
+    },
+    {
+      "allegation_id": 7,
+      "witness": "Martin John Smith",
+      "verdicts": [
+        "NOT_ADDRESSED/UNVERIFIED",
+        "NOT_ADDRESSED/UNVERIFIED",
+        "SUPPORTS"
+      ]
+    },
+    {
+      "allegation_id": 8,
+      "witness": "Patrick Bourke",
+      "verdicts": [
+        "CONTRADICTS",
+        "NOT_ADDRESSED/UNVERIFIED",
+        "NOT_ADDRESSED/UNVERIFIED"
+      ]
+    }
+  ],
+  "usage_per_run": [
+    {
+      "provider": "ollama",
+      "model": "gpt-oss:20b",
+      "llm_calls": 48,
+      "failed_calls": 0,
+      "input_tokens": 66172,
+      "output_tokens": 7079,
+      "cost_usd": 0.0,
+      "latency_ms_p50": 6113,
+      "latency_ms_p95": 11036,
+      "wall_seconds": 305.6
+    },
+    {
+      "provider": "ollama",
+      "model": "gpt-oss:20b",
+      "llm_calls": 48,
+      "failed_calls": 0,
+      "input_tokens": 66172,
+      "output_tokens": 7445,
+      "cost_usd": 0.0,
+      "latency_ms_p50": 4299,
+      "latency_ms_p95": 10513,
+      "wall_seconds": 243.8
+    },
+    {
+      "provider": "ollama",
+      "model": "gpt-oss:20b",
+      "llm_calls": 48,
+      "failed_calls": 0,
+      "input_tokens": 66172,
+      "output_tokens": 6900,
+      "cost_usd": 0.0,
+      "latency_ms_p50": 4219,
+      "latency_ms_p95": 8002,
+      "wall_seconds": 226.9
+    }
+  ]
+}

@@ -24,7 +24,7 @@ if args.env:
     load_dotenv(args.env)
 
 from services.document_parser import ParsedDocument
-from services.pleading_generator import HORIZON_PLEADINGS, classify_witness_against_pleading
+from services.pleading_generator import HORIZON_PLEADINGS, classify_witness_against_pleading, verify_quote
 from clients.claude_client import start_meter
 
 FILLER_BEFORE = [
@@ -63,8 +63,7 @@ for repeat in range(args.repeats):
 
         quote_in_plant = None
         if verdict in ("SUPPORTS", "CONTRADICTS"):
-            planted = " ".join(case["paragraph"].split()).lower()
-            quote_in_plant = bool(passage) and " ".join(passage.split()).lower() in planted
+            quote_in_plant = verify_quote(passage, case["paragraph"])
         rows.append({
             "id": case["id"], "repeat": repeat, "expected": case["expected"],
             "verdict": verdict, "correct": verdict == case["expected"],
