@@ -21,6 +21,8 @@ parser.add_argument("--env", help=".env file with ANTHROPIC_API_KEY")
 parser.add_argument("--data-dir", required=True, help="folder of witness statement PDFs")
 parser.add_argument("--witnesses", nargs="+", required=True, help="witness names as parsed from the PDFs")
 parser.add_argument("--runs", type=int, default=3)
+parser.add_argument("--votes", type=int, default=1, help="checks per witness-allegation pair in each run")
+parser.add_argument("--tag", default="", help="suffix for the results file name")
 args = parser.parse_args()
 
 from dotenv import load_dotenv
@@ -61,7 +63,7 @@ def verdicts(result: dict) -> dict:
 runs, usages = [], []
 for i in range(args.runs):
     print(f"\n=== Run {i + 1}/{args.runs}")
-    result = analyse_documents(documents, with_case_law=False)
+    result = analyse_documents(documents, with_case_law=False, votes=args.votes)
     runs.append(verdicts(result))
     usages.append(result["usage"])
 
@@ -78,6 +80,8 @@ summary = {
     "date": date.today().isoformat(),
     "witnesses": [d.witness_name for d in documents],
     "runs": args.runs,
+    "votes": args.votes,
+    "provider_settings": {k: os.getenv(k) for k in ("LLM_PROVIDER", "OPEN_MODEL", "LLM_TEMPERATURE")},
     "pairs": len(pairs),
     "same_verdict_every_run": f"{len(unanimous)}/{len(pairs)}",
     "same_verdict_where_any_run_found_evidence": f"{len(evidence_unanimous)}/{len(evidence_pairs)}",
@@ -85,7 +89,7 @@ summary = {
     "flips": flips,
     "usage_per_run": usages,
 }
-out = os.path.join(BACKEND, "eval", "results", f"stability_{summary['date']}.json")
+out = os.path.join(BACKEND, "eval", "results", f"stability_{summary['date']}{args.tag}.json")
 os.makedirs(os.path.dirname(out), exist_ok=True)
 with open(out, "w") as f:
     json.dump(summary, f, indent=2)

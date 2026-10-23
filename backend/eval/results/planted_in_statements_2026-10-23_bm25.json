@@ -1,0 +1,1175 @@
+{
+  "date": "2026-10-23",
+  "hosts": {
+    "Peter John Rowley": 28673,
+    "Roderick Mark Ismay": 34749,
+    "Steve Bansal": 7407
+  },
+  "cases": 16,
+  "positions": [
+    0.1,
+    0.5,
+    0.9
+  ],
+  "documents": 144,
+  "planted_paragraph_reached_model": "143/144",
+  "by_position": {
+    "0.1": "47/48",
+    "0.5": "48/48",
+    "0.9": "48/48"
+  },
+  "rows": [
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A1-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A1-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A1-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A1-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A1-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A1-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A2-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A2-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A2-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A2-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A2-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A2-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A3-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A3-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A3-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A3-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A3-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A3-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A4-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A4-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A4-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A4-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A4-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A4-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A5-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A5-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A5-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A5-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A5-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A5-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A6-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A6-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A6-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A6-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A6-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A6-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A7-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A7-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A7-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A7-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A7-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A7-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A8-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A8-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A8-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A8-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A8-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Peter John Rowley",
+      "host_chars": 28673,
+      "id": "A8-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A1-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A1-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A1-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A1-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A1-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A1-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A2-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A2-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A2-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A2-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A2-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A2-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A3-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A3-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A3-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A3-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A3-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A3-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A4-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A4-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A4-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A4-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A4-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A4-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A5-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A5-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A5-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A5-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A5-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A5-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A6-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A6-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A6-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A6-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A6-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A6-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A7-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A7-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A7-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A7-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A7-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A7-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A8-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A8-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A8-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A8-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A8-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Roderick Mark Ismay",
+      "host_chars": 34749,
+      "id": "A8-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A1-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A1-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A1-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A1-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": false
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A1-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A1-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A2-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A2-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A2-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A2-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A2-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A2-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A3-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A3-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A3-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A3-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A3-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A3-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A4-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A4-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A4-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A4-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A4-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A4-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A5-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A5-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A5-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A5-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A5-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A5-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A6-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A6-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A6-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A6-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A6-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A6-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A7-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A7-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A7-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A7-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A7-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A7-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A8-S",
+      "position": 0.1,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A8-S",
+      "position": 0.5,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A8-S",
+      "position": 0.9,
+      "expected": "SUPPORTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A8-C",
+      "position": 0.1,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A8-C",
+      "position": 0.5,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    },
+    {
+      "host": "Steve Bansal",
+      "host_chars": 7407,
+      "id": "A8-C",
+      "position": 0.9,
+      "expected": "CONTRADICTS",
+      "reached_model": true
+    }
+  ]
+}

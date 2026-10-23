@@ -6,6 +6,7 @@ from clients.claude_client import call_claude
 from clients.perplexity_client import search_case_law
 import json
 import re
+from collections import Counter
 
 def verify_quote(quote: str, raw_text: str) -> bool:
     """
@@ -17,7 +18,8 @@ def verify_quote(quote: str, raw_text: str) -> bool:
     # Normalise whitespace for matching
     normalised_text = " ".join(raw_text.split()).lower()
     # A quote joined with an ellipsis passes only if every piece is verbatim and in order
-    pieces = [" ".join(p.split()).lower().strip(" .") for p in re.split(r"\.\.\.|…", quote)]
+    # Quote marks the model wraps around the passage aren't part of it
+    pieces = [" ".join(p.split()).lower().strip(" .\"'“”‘’") for p in re.split(r"\.\.\.|…", quote)]
     position = 0
     for piece in pieces:
         if not piece:
@@ -79,13 +81,9 @@ HORIZON_PLEADINGS = [
     }
 ]
 
-def classify_witness_against_pleading(allegation: dict, document) -> dict:
-    """
-    Search through the entire document in chunks to find
-    relevant passages, then classify.
-    """
-    import re
-    from utils.text_chunker import find_relevant_chunks
+def relevant_excerpts(allegation: dict, document) -> str:
+    """The parts of the statement that are sent to the model for this allegation."""
+    from utils.text_chunker import query_terms, select_chunks_bm25
 
     topic_keywords = {
         "horizon_system": ["horizon", "bug", "error", "defect", "shortfall", "remote", "access", "integrity"],
@@ -95,8 +93,17 @@ def classify_witness_against_pleading(allegation: dict, document) -> dict:
         "financial_losses": ["shortfall", "debt", "repay", "losses", "financial", "pressure", "make good"]
     }
 
-    keywords = topic_keywords.get(allegation["topic"], [])
-    relevant_text = find_relevant_chunks(document.raw_text, keywords)
+    # The allegation's own wording plus the topic's keywords
+    terms = query_terms(allegation["allegation"], *topic_keywords.get(allegation["topic"], []))
+    return select_chunks_bm25(document.raw_text, terms)
+
+
+def classify_witness_against_pleading(allegation: dict, document) -> dict:
+    """
+    Search through the entire document in chunks to find
+    relevant passages, then classify.
+    """
+    relevant_text = relevant_excerpts(allegation, document)
 
     prompt = f"""You are a litigation analyst for the Post Office Horizon IT Inquiry.
 
@@ -107,7 +114,7 @@ FORMAL ALLEGATION:
 Topic: {allegation['topic']}
 
 RELEVANT EXCERPTS FROM {document.witness_name.upper()}'S STATEMENT:
-{relevant_text[:5000]}
+{relevant_text}
 
 Return ONLY valid JSON:
 {{
@@ -155,6 +162,27 @@ Return ONLY valid JSON:
     }
 
 
+CHECK_VOTES = int(os.getenv("CHECK_VOTES", "1"))
+
+
+def classify_with_votes(allegation: dict, document, votes: int = CHECK_VOTES) -> dict:
+    """
+    Run the check `votes` times. Any verified SUPPORTS/CONTRADICTS beats "not addressed",
+    because evidence was found and its quote checked out; between the two sides the
+    majority wins. Each extra vote costs one more model call.
+    """
+    results = [classify_witness_against_pleading(allegation, document) for _ in range(votes)]
+    evidence = [r for r in results if r["verdict"] in ("SUPPORTS", "CONTRADICTS") and r.get("verified")]
+    if not evidence:
+        chosen = results[0]
+    else:
+        side = Counter(r["verdict"] for r in evidence).most_common(1)[0][0]
+        chosen = next(r for r in evidence if r["verdict"] == side)
+    if votes > 1:
+        chosen = {**chosen, "votes": [r["verdict"] for r in results]}
+    return chosen
+
+
 def parse_documents(document_paths: list) -> list:
     from services.document_parser import parse_document
 
@@ -169,7 +197,8 @@ def parse_documents(document_paths: list) -> list:
             print(f"  Failed: {path} — {e}")
     return documents
 
-def analyse_documents(documents: list, progress_callback=None, with_case_law: bool = True) -> dict:
+def analyse_documents(documents: list, progress_callback=None, with_case_law: bool = True,
+                      votes: int = CHECK_VOTES) -> dict:
     """
     Test every formal allegation against every parsed statement.
     One failed Claude call marks that witness as failed for that allegation
@@ -205,7 +234,7 @@ def analyse_documents(documents: list, progress_callback=None, with_case_law: bo
 
         for doc in documents:
             try:
-                result = classify_witness_against_pleading(allegation, doc)
+                result = classify_with_votes(allegation, doc, votes)
             except Exception as e:
                 print(f"  {doc.witness_name}: FAILED ({e})")
                 row["failed"].append({"witness": doc.witness_name, "error": str(e)})

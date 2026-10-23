@@ -20,7 +20,8 @@
 - **133 witness statements, 8 formal allegations.** Each allegation is checked against the statements and marked SUPPORTED, CONTRADICTED, EVIDENTIAL GAP or UNVERIFIED, with a trial-readiness score.
 - **Every cited passage is checked against its source.** A verdict only counts if its quoted passage is found word for word (ignoring spacing and case) in the original statement; otherwise it is downgraded to UNVERIFIED. In the saved demo run, all 13 cited passages passed.
 - **Demo run (6 witnesses): 6 of 8 allegations evidenced (score 75%, STRONG), 1 contradiction, 2 evidential gaps,** each with UK case law retrieved alongside.
-- **Planted-evidence test: 70/72 correct** over 24 synthetic cases run 3 times, with every cited quote (50/50) traced to the planted passage. **Stability test:** verdicts that find evidence don't always repeat between runs (see [Evaluation](#5-evaluation)).
+- **Planted-evidence test: 70/72 correct** over 24 synthetic cases run 3 times, with every cited quote (50/50) traced to the planted passage.
+- **Evidence hidden in real statements: 46/48 found and correctly quoted**, after a retrieval fix raised the share of planted passages reaching the model from 58% to 99% (see [Evaluation](#5-evaluation)).
 
 ## Contents
 
@@ -77,13 +78,13 @@ That is the kind of tension a lawyer needs to see early, and also the kind of ca
 ## 4. How the analysis works
 
 - **Background jobs.** An analysis takes minutes, so `POST /analyze/pleading` returns a job ID immediately, and the frontend polls `GET /jobs/{id}` for progress.
-- **Retrieval.** Each statement is split into overlapping 3,000-character chunks. The chunks most relevant to an allegation's topic are scored by keyword and sent to the model, so whole statements don't need to fit in one prompt.
+- **Retrieval.** Each statement is split into overlapping 1,000-character chunks, ranked with BM25 against the allegation's wording plus its topic's keywords, and the best chunks up to 6,000 characters are sent to the model in document order, so whole statements don't need to fit in one prompt.
 - **Classification.** Claude classifies each witness against each allegation and must return the passage it relied on (prompts in `backend/prompts/`).
-- **Verification.** The quoted passage is searched for in the statement's full text, ignoring spacing and case. A quote joined with "..." passes only if every piece is found, in order. No match means UNVERIFIED, not a verdict.
+- **Verification.** The quoted passage is searched for in the statement's full text, ignoring spacing and case. Quote marks the model puts around the passage are ignored, and a quote joined with "..." passes only if every piece is found, in order. No match means UNVERIFIED, not a verdict.
 - **Case law.** Perplexity retrieves relevant UK authorities for each allegation (in the demo, the Bates and Hamilton Post Office judgments), with source links.
 - **Failures are visible.** Each model call retries only on rate limits, server errors and dropped connections; other errors fail at once. A failed witness-allegation call is listed as failed on that row instead of passing as "no evidence", and the job only fails if every call does. A failed case-law or graph step adds a warning instead of losing the result.
 - **Cost and time.** Every analysis records its model, number of calls, failed calls, input and output tokens, cost in USD (from a dated price table) and p50/p95 call latency in the result's `usage` field.
-- **Model choice.** `LLM_PROVIDER` picks Claude (`anthropic`, the default), an open-weight model on Groq's free tier (`groq`, gpt-oss-120b) or a local Ollama model (`ollama`, gpt-oss:20b). The evaluation below used the open models.
+- **Model choice.** `LLM_PROVIDER` picks Claude (`anthropic`, the default), an open-weight model on Groq's free tier (`groq`, gpt-oss-120b) or a local Ollama model (`ollama`, gpt-oss:20b). Open models run at temperature 0. Claude's API doesn't accept a temperature, so `CHECK_VOTES=3` runs each check three times instead and keeps any verdict whose quote verifies. The evaluation below used the open models.
 - **Human review and audit trail.** Every verdict can be accepted, overruled or rejected, and each decision is timestamped.
 - **Snapshots.** The case state can be saved over time, and change detection shows what moved when new evidence arrived.
 
@@ -106,26 +107,35 @@ There are no lawyer-labelled verdicts for these statements, so the tests check w
 
 Both misses were the same hard negative: the fête shortfall was taken as contradicting the Horizon allegation in 2 of 3 runs. Keyword-similar evidence is a real failure mode.
 
-**Stability** (`backend/eval/stability.py`). The same 6 real witness statements were analysed against all 8 allegations 3 times, with gpt-oss:20b running locally in Ollama (Groq's daily token limit ran out):
+**Evidence hidden in real statements** (`backend/eval/planted_in_statements.py`). The test above puts each planted paragraph in a short document, so it never tests retrieval. Here the 16 supporting and contradicting paragraphs are inserted 10%, 50% and 90% of the way into three real statements (7k to 35k characters), and the check is whether the passage reaches the model at all:
 
-| | Result |
+| | Planted passage reached the model |
 |---|---|
-| Witness-allegation pairs with the same verdict all 3 times | 42/48 |
-| ...of the 6 pairs where any run found evidence | **0/6** |
-| Supports flipped to contradicts, or the reverse | never |
-| Calls per run / failed calls | 48 / 0 |
-| Call latency p50 / p95 (laptop) | 4.2-6.1 s / 8.0-11.0 s |
-| Time per run | 3.8-5.1 min |
-| Cost | $0 |
+| Original retrieval (keyword-scored 3,000-character chunks, cut to 5,000 characters) | 83/144 (58%); mid-statement 20/48 |
+| BM25 over 1,000-character chunks with the allegation's wording, 6,000 characters | **143/144 (99%)** |
 
-Every pair that found evidence in one run came back "not addressed" in another, but no verdict ever flipped sides. So a single run's gaps aren't reliable: an allegation shown as an evidential gap may have evidence that a second run would find. Running each pair several times and keeping any verified quote would fix this at the cost of more calls. Results are saved in `backend/eval/results/`.
+The original version picked up to 12,000 characters of chunks and then cut the excerpt to 5,000, so fewer than two chunks were ever read. Passed through the whole pipeline (mid-statement position, gpt-oss-20b on Groq), **46/48** planted paragraphs were found, put on the right side and quoted from the planted text: one contradiction was read as support and one support was missed. That run also exposed a verifier bug, since fixed: the model sometimes wrapped its quote in quotation marks, which made a correct quote fail as UNVERIFIED. The planted paragraphs were written for these allegations, so they share the query's words more than real evidence would. Treat 99% as an upper bound.
+
+**Stability** (`backend/eval/stability.py`). The same 6 real witness statements were analysed against all 8 allegations 3 times with gpt-oss:20b in local Ollama:
+
+| | Before | After (new retrieval, temperature 0) |
+|---|---|---|
+| Witness-allegation pairs with the same verdict all 3 times | 42/48 | **44/48** |
+| ...of the pairs where any run found evidence | 0/6 | **13/17** |
+| Supports flipped to contradicts, or the reverse | never | never |
+| Calls per run / failed calls | 48 / 0 | 48 / 0 |
+| Call latency p50 / p95 (laptop) | 4.2-6.1 s / 8.0-11.0 s | 4.6-7.2 s / 9.4-12.6 s |
+| Time per run | 3.8-5.1 min | 4.2-6.5 min |
+| Cost | $0 | $0 |
+
+Before, the model sampled at Ollama's default temperature of 1, and every pair that found evidence in one run came back "not addressed" in another. The new retrieval also finds evidence for 17 pairs instead of 6. At temperature 0, runs 2 and 3 were identical. The 4 remaining flips are all evidence found only in the first run after the model loaded, so a single run can still miss evidence that another would find. Results are saved in `backend/eval/results/`.
 
 ## 6. Limitations
 
-- **Retrieval can miss evidence.** Chunks are chosen by keyword relevance, so a passage that uses different wording may never reach the model, and the allegation could then show as a false gap.
+- **Retrieval can still miss evidence.** Chunks are ranked by shared words, so a passage that uses different wording from the allegation may never reach the model, and the allegation could then show as a false gap.
 - **The verdicts are model judgements.** A verified quote proves the passage exists, not that the model read it correctly. The Ismay example above is arguable, which is why review exists.
 - **No lawyer-labelled benchmark.** The planted test checks that clear evidence is found and correctly sided, and the stability test checks repeatability; neither checks real verdicts against a lawyer's labels. That would be the next step.
-- **Evidence detection varies between runs.** See the stability test above.
+- **Evidence detection can vary between runs.** 4 of 17 evidence pairs still flipped; see the stability test above.
 - **Demo scope.** The saved demo uses 6 of the 133 statements.
 - **Not legal advice.** It's a triage tool to show a lawyer where to look.
 
@@ -155,6 +165,7 @@ curl -X POST http://localhost:8000/demo/precompute   # optional: rebuild the cac
 python backend/eval/planted_evidence.py --repeats 3                  # planted-evidence test
 python backend/eval/stability.py --data-dir data/raw --runs 3 \
     --witnesses "Steve Bansal" "Roderick Mark Ismay"                  # stability test
+python backend/eval/planted_in_statements.py --data-dir data/raw [--classify]   # evidence hidden in real statements
 
 bun install
 VITE_API_URL=http://localhost:8000 bun run dev       # frontend at http://localhost:8080

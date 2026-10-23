@@ -53,6 +53,10 @@ def _call_open_model(kwargs: dict):
         "messages": messages,
         # gpt-oss reasons before answering; leave room so the answer isn't cut off
         "max_tokens": max(kwargs["max_tokens"], 4000),
+        # Greedy decoding: at the providers' default temperature the same check flipped
+        # between a verdict and "not addressed" across runs. (Claude's API no longer
+        # accepts temperature; use CHECK_VOTES there instead.)
+        "temperature": float(os.getenv("LLM_TEMPERATURE", "0")),
     }
     if MODEL.startswith("openai/gpt-oss") or MODEL.startswith("gpt-oss"):
         payload["reasoning_effort"] = "low"
