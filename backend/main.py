@@ -181,6 +181,8 @@ def run_pleading_job(job_id: str, primary_pdf: str, comparison_pdfs: list[str]):
             print("Neo4j graph updated")
         except Exception as e:
             print(f"Neo4j graph update failed (non-critical): {e}")
+            result.setdefault("warnings", []).append(f"Witness graph not updated (Neo4j unavailable): {e}")
+            save_job(job_id, _jobs[job_id])
     except Exception as e:
         _jobs[job_id]["status"] = "failed"
         _jobs[job_id]["progress"] = 0

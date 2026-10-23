@@ -1,0 +1,60 @@
+{
+  "_about": "Synthetic witness paragraphs with known answers, written for testing only (not real evidence). Each case is planted into neutral filler and classified against one allegation. expected: SUPPORTS / CONTRADICTS / NOT_ADDRESSED. 'N' cases share the topic's keywords but don't address the allegation.",
+  "cases": [
+    {"id": "A1-S", "allegation_id": 1, "expected": "SUPPORTS",
+     "paragraph": "From 2003 the Horizon terminal regularly showed shortfalls that did not match the cash I had counted. On one occasion the system recorded the same £1,200 transfer twice, which produced a shortfall of exactly that amount. A Fujitsu engineer later confirmed to me that the duplication was caused by a fault in Horizon."},
+    {"id": "A1-C", "allegation_id": 1, "expected": "CONTRADICTS",
+     "paragraph": "In eleven years I never had a shortfall that I could not trace to a mistake made at the counter. Every discrepancy I investigated turned out to be human error, such as a miskeyed stamp sale, and once corrected the Horizon figures always matched my cash. I have no reason to think Horizon itself caused any of my losses."},
+    {"id": "A1-N", "allegation_id": 1, "expected": "NOT_ADDRESSED",
+     "paragraph": "In 2009 the village hall committee, which I chaired, had a shortfall of about £300 in its summer fete takings. We traced it to an error in the raffle float. This had nothing to do with the branch or with any computer system."},
+
+    {"id": "A2-S", "allegation_id": 2, "expected": "SUPPORTS",
+     "paragraph": "In 2004 I attended a regional meeting where a Post Office area manager told us that head office had received a report from Fujitsu listing several Horizon defects that could stop branch accounts from balancing. That was two years before the first prosecution in my area."},
+    {"id": "A2-C", "allegation_id": 2, "expected": "CONTRADICTS",
+     "paragraph": "As a regional contracts manager I read every report on Horizon that reached head office. Until 2010 none of them identified any defect; each one stated that the system was operating correctly. There was nothing in them from which the Post Office could have known of a defect."},
+    {"id": "A2-N", "allegation_id": 2, "expected": "NOT_ADDRESSED",
+     "paragraph": "I was aware that the branch's opening hours would change in 2005 because I was informed by letter. I reported the change to my customers on the noticeboard."},
+
+    {"id": "A3-S", "allegation_id": 3, "expected": "SUPPORTS",
+     "paragraph": "A Fujitsu support engineer told me in 2008 that his team could log in remotely and insert or change transactions in a branch's accounts, and that the subpostmaster would not see that anything had been changed. Some weeks later two transactions appeared in my account that nobody in my branch had entered."},
+    {"id": "A3-C", "allegation_id": 3, "expected": "CONTRADICTS",
+     "paragraph": "I worked in Fujitsu's support centre from 2000 to 2010. In that time there was no means for support staff to change a branch's transaction data remotely. We could view logs, but any correction had to be keyed in at the branch by the subpostmaster themselves."},
+    {"id": "A3-N", "allegation_id": 3, "expected": "NOT_ADDRESSED",
+     "paragraph": "The branch had remote access to its alarm system, which the security company used to test the sensors each month. I was told in advance of each test."},
+
+    {"id": "A4-S", "allegation_id": 4, "expected": "SUPPORTS",
+     "paragraph": "Before my trial my solicitor asked the Post Office for any records of Horizon faults affecting my branch. The Post Office replied that there were none. I later learned that a Fujitsu error log recording a fault at my branch existed at the time and had not been disclosed to my defence."},
+    {"id": "A4-C", "allegation_id": 4, "expected": "CONTRADICTS",
+     "paragraph": "As the Post Office's prosecution lawyer on those cases, I disclosed to the defence every Horizon fault report we held, including Fujitsu's error logs, well before each trial. The defence lawyers acknowledged receiving them in writing."},
+    {"id": "A4-N", "allegation_id": 4, "expected": "NOT_ADDRESSED",
+     "paragraph": "During my law degree I wrote a dissertation on disclosure rules in criminal fraud cases. It was about banking cases in the 1990s and did not concern the Post Office."},
+
+    {"id": "A5-S", "allegation_id": 5, "expected": "SUPPORTS",
+     "paragraph": "In 2007 I was prosecuted for false accounting because Horizon showed a shortfall of £8,000 at my branch. I had not taken any money. My conviction was quashed by the Court of Appeal in 2021, which found that the Horizon shortfall evidence was unreliable."},
+    {"id": "A5-C", "allegation_id": 5, "expected": "CONTRADICTS",
+     "paragraph": "The subpostmaster I prosecuted in 2006 admitted in interview that she had taken cash from the branch to pay her mortgage, and she repaid part of it. Her conviction rested on her own admission and her bank records, not on any figure produced by Horizon."},
+    {"id": "A5-N", "allegation_id": 5, "expected": "NOT_ADDRESSED",
+     "paragraph": "In 2008 I sat as a juror in a criminal trial about a stolen car. The defendant was convicted. The case had no connection with the Post Office."},
+
+    {"id": "A6-S", "allegation_id": 6, "expected": "SUPPORTS",
+     "paragraph": "I attended board meetings as company secretary. In 2009 the board was given a paper describing Horizon as not reliable enough to support accounting evidence, yet at the same meeting the directors agreed that prosecutions based on Horizon data should continue."},
+    {"id": "A6-C", "allegation_id": 6, "expected": "CONTRADICTS",
+     "paragraph": "I sat on the senior management team throughout this period. Every briefing we received from IT and from Fujitsu said that Horizon was robust and reliable. No director I worked with believed otherwise when prosecutions were approved."},
+    {"id": "A6-N", "allegation_id": 6, "expected": "NOT_ADDRESSED",
+     "paragraph": "In 2006 senior management decided to change the branch uniform policy, and the board approved a new logo. I found the decision unnecessary, but it did not affect my work."},
+
+    {"id": "A7-S", "allegation_id": 7, "expected": "SUPPORTS",
+     "paragraph": "I worked on Fujitsu's Known Error Log from 2003. It recorded defects in Horizon, including faults that made branch accounts show false discrepancies. We were told the KEL was internal only, and as far as I know it was never given to subpostmasters or to their lawyers."},
+    {"id": "A7-C", "allegation_id": 7, "expected": "CONTRADICTS",
+     "paragraph": "Fujitsu's Known Error Log was not kept secret. From 2004 onwards I personally sent extracts of the relevant entries to the solicitors acting for subpostmasters whenever a branch dispute reached litigation."},
+    {"id": "A7-N", "allegation_id": 7, "expected": "NOT_ADDRESSED",
+     "paragraph": "At my previous employer, a supermarket chain, we kept a known error log for the self-checkout tills. It was shared with every store manager each week."},
+
+    {"id": "A8-S", "allegation_id": 8, "expected": "SUPPORTS",
+     "paragraph": "Whenever Horizon showed a shortfall, the area manager told me I had to make it good from my own money or lose my contract. Over five years I paid in about £20,000 of my savings, even though I believed the losses were caused by errors in the system."},
+    {"id": "A8-C", "allegation_id": 8, "expected": "CONTRADICTS",
+     "paragraph": "I was never asked to repay any shortfall from my own funds. On the two occasions my accounts did not balance, the Post Office investigated, found a processing error at its end and corrected the figures without asking me for anything."},
+    {"id": "A8-N", "allegation_id": 8, "expected": "NOT_ADDRESSED",
+     "paragraph": "My daughter's school asked parents to make good a shortfall in the trip budget, and I contributed £20 from my own funds. This was unrelated to the branch."}
+  ]
+}

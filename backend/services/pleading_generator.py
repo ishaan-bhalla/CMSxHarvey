@@ -117,15 +117,11 @@ Return ONLY valid JSON:
     try:
         result = json.loads(response)
     except json.JSONDecodeError:
-        import re
         match = re.search(r'\{.*\}', response, re.DOTALL)
-        result = json.loads(match.group()) if match else {
-            "verdict": "NOT_ADDRESSED",
-            "confidence": "LOW",
-            "relevant_passage": None,
-            "paragraph_ref": None,
-            "reasoning": "Could not parse response"
-        }
+        if not match:
+            # Reported as a failed call, not as "not addressed", so it can't pose as an evidence gap
+            raise ValueError("Could not parse Claude's response as JSON")
+        result = json.loads(match.group())
 
     # Verify the quote actually exists in the document
     passage = result.get("relevant_passage")
@@ -148,7 +144,8 @@ Return ONLY valid JSON:
         **result
     }
 
-def run_pleading_analysis(document_paths: list) -> dict:
+
+def parse_documents(document_paths: list) -> list:
     from services.document_parser import parse_document
 
     print(f"Parsing {len(document_paths)} documents...")
@@ -160,84 +157,21 @@ def run_pleading_analysis(document_paths: list) -> dict:
             print(f"  Parsed: {doc.witness_name}")
         except Exception as e:
             print(f"  Failed: {path} — {e}")
+    return documents
 
-    matrix = []
-
-    for allegation in HORIZON_PLEADINGS:
-        print(f"\nAllegation {allegation['id']}: {allegation['allegation'][:60]}...")
-        row = {
-            "allegation_id": allegation["id"],
-            "allegation": allegation["allegation"],
-            "topic": allegation["topic"],
-            "supporting": [],
-            "contradicting": [],
-            "not_addressed": [],
-            "gap": True
-        }
-
-        for doc in documents:
-            result = classify_witness_against_pleading(allegation, doc)
-            print(f"  {doc.witness_name}: {result['verdict']} ({result['confidence']})")
-
-            if result["verdict"] == "SUPPORTS":
-                row["supporting"].append(result)
-                row["gap"] = False
-            elif result["verdict"] == "CONTRADICTS":
-                row["contradicting"].append(result)
-                row["gap"] = False
-            else:
-                row["not_addressed"].append(doc.witness_name)
-
-        matrix.append(row)
-
-        # Enrich with case law via Perplexity
-        try:
-            case_law = search_case_law(allegation["allegation"], allegation["topic"])
-            row["case_law"] = case_law["case_law"]
-            row["case_law_sources"] = case_law["sources"]
-        except Exception as e:
-            row["case_law"] = None
-            row["case_law_sources"] = []
-
-    supported = sum(1 for r in matrix if len(r["supporting"]) > 0)
-    score = round((supported / len(matrix)) * 100, 1)
-
-    if score >= 70:
-        readiness = "STRONG"
-    elif score >= 40:
-        readiness = "MODERATE"
-    else:
-        readiness = "VULNERABLE"
-
-    return {
-        "documents_analysed": [d.witness_name for d in documents],
-        "total_allegations": len(HORIZON_PLEADINGS),
-        "trial_readiness": readiness,
-        "trial_readiness_score": score,
-        "matrix": matrix,
-        "gaps": [r for r in matrix if r["gap"]],
-        "contradictions": [r for r in matrix if len(r["contradicting"]) > 0]
-    }
-
-def run_pleading_analysis_with_progress(document_paths: list, progress_callback=None) -> dict:
+def analyse_documents(documents: list, progress_callback=None, with_case_law: bool = True) -> dict:
     """
-    Same as run_pleading_analysis but calls progress_callback
-    after each allegation is processed so the frontend can show a progress bar.
+    Test every formal allegation against every parsed statement.
+    One failed Claude call marks that witness as failed for that allegation
+    instead of stopping the whole job; failures are listed in the result.
     """
-    from services.document_parser import parse_document
+    from clients.claude_client import start_meter
 
-    print(f"Parsing {len(document_paths)} documents...")
-    documents = []
-    for path in document_paths:
-        try:
-            doc = parse_document(path)
-            documents.append(doc)
-            print(f"  Parsed: {doc.witness_name}")
-        except Exception as e:
-            print(f"  Failed: {path} — {e}")
-
+    meter = start_meter()
     total_steps = len(HORIZON_PLEADINGS)
     matrix = []
+    warnings = []
+    case_law_failures = 0
 
     for i, allegation in enumerate(HORIZON_PLEADINGS):
         if progress_callback:
@@ -255,34 +189,45 @@ def run_pleading_analysis_with_progress(document_paths: list, progress_callback=
             "supporting": [],
             "contradicting": [],
             "not_addressed": [],
+            "failed": [],
             "gap": True
         }
 
         for doc in documents:
-            result = classify_witness_against_pleading(allegation, doc)
-            print(f"  {doc.witness_name}: {result['verdict']} ({result['confidence']})")
+            try:
+                result = classify_witness_against_pleading(allegation, doc)
+            except Exception as e:
+                print(f"  {doc.witness_name}: FAILED ({e})")
+                row["failed"].append({"witness": doc.witness_name, "error": str(e)})
+                continue
 
+            print(f"  {doc.witness_name}: {result['verdict']} ({result['confidence']})")
             if result["verdict"] == "SUPPORTS":
                 row["supporting"].append(result)
                 row["gap"] = False
             elif result["verdict"] == "CONTRADICTS":
                 row["contradicting"].append(result)
                 row["gap"] = False
-            elif result["verdict"] == "UNVERIFIED":
-                row["not_addressed"].append(doc.witness_name)
             else:
                 row["not_addressed"].append(doc.witness_name)
 
         matrix.append(row)
 
-        # Enrich with case law via Perplexity
-        try:
+        if with_case_law:
             case_law = search_case_law(allegation["allegation"], allegation["topic"])
             row["case_law"] = case_law["case_law"]
             row["case_law_sources"] = case_law["sources"]
-        except Exception as e:
-            row["case_law"] = None
-            row["case_law_sources"] = []
+            if case_law["error"]:
+                row["case_law_error"] = case_law["error"]
+                case_law_failures += 1
+
+    failed = sum(len(r["failed"]) for r in matrix)
+    if documents and failed == len(matrix) * len(documents):
+        raise Exception(f"Every Claude call failed: {matrix[0]['failed'][0]['error']}")
+    if failed:
+        warnings.append(f"{failed} witness-allegation checks failed and are not counted; see 'failed' on each row.")
+    if case_law_failures:
+        warnings.append(f"Case-law search failed for {case_law_failures} of {len(matrix)} allegations.")
 
     if progress_callback:
         progress_callback(total_steps, total_steps, "Generating report...")
@@ -304,5 +249,17 @@ def run_pleading_analysis_with_progress(document_paths: list, progress_callback=
         "trial_readiness_score": score,
         "matrix": matrix,
         "gaps": [r for r in matrix if r["gap"]],
-        "contradictions": [r for r in matrix if len(r["contradicting"]) > 0]
+        "contradictions": [r for r in matrix if len(r["contradicting"]) > 0],
+        "warnings": warnings,
+        "usage": meter.summary()
     }
+
+def run_pleading_analysis(document_paths: list) -> dict:
+    return analyse_documents(parse_documents(document_paths))
+
+def run_pleading_analysis_with_progress(document_paths: list, progress_callback=None) -> dict:
+    """
+    Same as run_pleading_analysis but calls progress_callback
+    after each allegation is processed so the frontend can show a progress bar.
+    """
+    return analyse_documents(parse_documents(document_paths), progress_callback)
